@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-service
+spec:
+  ports:
+  - name: "http"
+    port: 80
+    protocol: TCP
+    targetPort: 80
+    {{- if .Values.service.ports.nodePort }}
+    nodePort: {{ .Values.service.ports.nodePort }}
+    {{- endif }}
+  selector:
+    app: hello-world
+  type: {{ .Values.service.type }}

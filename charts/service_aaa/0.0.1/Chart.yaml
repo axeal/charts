@@ -1,0 +1,5 @@
+apiVersion: v1
+name: service_aaa
+version: 0.0.1
+description: This is a dummy application for tutorial purposes.
+icon: file://../logo.png

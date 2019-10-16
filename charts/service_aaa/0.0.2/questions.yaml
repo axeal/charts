@@ -1,0 +1,15 @@
+questions:
+- variable: image.tag
+  default: latest
+  required: false
+  description: "Image version"
+- variable: service.type
+  type: string
+  default: "ClusterIP"
+  required: false
+  show_subquestion_if: "NodePort"
+  description: "Service type"
+  subquestions:
+  - variable: service.ports.nodePort
+    type: int
+    required: false
