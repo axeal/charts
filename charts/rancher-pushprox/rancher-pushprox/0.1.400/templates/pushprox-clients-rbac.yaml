@@ -1,4 +1,4 @@
-{{- if .Values.clients }}{{- if .Values.clients.enabled }}
+{{- if .Values.clients }}{{- if .Values.clients.enabled }}{{- if and .Values.clients.https.enabled .Values.clients.https.useServiceAccountCredentials }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -9,7 +9,6 @@ rules:
   verbs: ["get"]
 {{- if .Values.clients.rbac.additionalRules }}
 {{ toYaml .Values.clients.rbac.additionalRules }}
-{{- end }}
 {{- end }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -32,4 +31,4 @@ metadata:
   name: {{ template "pushProxy.client.name" . }}
   namespace: {{ include "pushprox.namespace" . }}
   labels: {{ include "pushProxy.client.labels" . | nindent 4 }}
-{{- end }}{{- end }}
+{{- end }}{{- end }}{{- end }}
